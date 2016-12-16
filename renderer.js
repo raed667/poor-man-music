@@ -1,7 +1,3 @@
-// This file is required by the index.html file and will
-// be executed in the renderer process for that window.
-// All of the Node.js APIs are available in this process.
-
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 const albumArt = require('album-art');
@@ -28,25 +24,26 @@ player.addEventListener('ended', () => {
     let nextIndex = -1, i;
     for (i = 0; i < songs.length; i++) {
         if (currentlyPlaying.file_id === songs[i].file_id) {
+            // check if last song => @todo load more
             nextIndex = ++i;
             break;
         }
     }
-
-    const songsItems = Array.from(document.querySelectorAll('.songItem'));
-    songsItems.forEach(song => {
-        if (song.dataset.file_id === songs[nextIndex].file_id) {
-            song.classList.add('hl');
-        } else {
-            song.classList.remove('hl');
-        }
-    });
-
-    songs[nextIndex].play();
+    if (nextIndex < songs.length) {
+        const songsItems = Array.from(document.querySelectorAll('.songItem'));
+        songsItems.forEach(song => {
+            if (song.dataset.file_id === songs[nextIndex].file_id) {
+                song.classList.add('hl');
+            } else {
+                song.classList.remove('hl');
+            }
+        });
+        songs[nextIndex].play();
+    }
 });
 
 player.addEventListener('pause', () => {
-
+    // @todo : click to resume
 });
 
 btnMore.addEventListener('click', function () {
@@ -63,13 +60,17 @@ class Song {
         this.link = link;
     }
 
+    /**
+     *
+     * @param time
+     * @returns {string}
+     */
     prettyPrintTime(time) {
         return (time - (time %= 60)) / 60 + (9 < time ? ':' : ':0') + time;
     }
 
     play() {
         const url = `http://pleer.net/site_api/files/get_url?action=download&id=${this.link}`;
-        let isPlaying = false;
         try {
             fetch(url)
                 .then(blob => blob.json())
@@ -114,6 +115,8 @@ function playSong(e) {
 }
 
 function displaySongsInList() {
+
+    songsList.innerHTML = "Loading...";
     const html = songs.map(song => {
         return `<tr class="songItem" data-file_id="${song.file_id}">
             <td>${song.song}</td>
