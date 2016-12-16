@@ -35,8 +35,9 @@ player.addEventListener('ended', () => {
 
     const songsItems = Array.from(document.querySelectorAll('.songItem'));
     songsItems.forEach(song => {
-
         if (song.dataset.file_id === songs[nextIndex].file_id) {
+            console.log("Found the song");
+            console.log(song);
             song.classList.add('hl');
         } else {
             song.classList.remove('hl');

@@ -40,5 +40,7 @@ audio {
 }
 
 .hl {
-    background-color: #1a82fb;
+    background-color: #1a82fb !important;
+    font-weight: bold;
+    color: #ffffff;
 }
