@@ -14,34 +14,46 @@ const titlePlaying = document.querySelector('#titlePlaying');
 const btnMore = document.querySelector('#btnMore');
 const artCover = document.querySelector('#artCover');
 
-btnMore.addEventListener('click', function () {
-    page++;
-    getSongs();
-});
-
-
 const songs = [];
-
 let currentlyPlaying,
     tableElement,
     page = 1;
 
-
 searchInput.addEventListener('keyup', getSongs);
 
 player.addEventListener('ended', () => {
-    currentlyPlaying = null;
     titlePlaying.innerHTML = "";
 
-    const songsItems = Array.from(document.querySelectorAll('.songItem'));
-    songsItems.forEach(song => song.classList.remove('hl'));
+    // play next song
+    let nextIndex = -1, i;
+    for (i = 0; i < songs.length; i++) {
+        if (currentlyPlaying.file_id === songs[i].file_id) {
+            nextIndex = ++i;
+            break;
+        }
+    }
 
+    const songsItems = Array.from(document.querySelectorAll('.songItem'));
+    songsItems.forEach(song => {
+
+        if (song.dataset.file_id === songs[nextIndex].file_id) {
+            song.classList.add('hl');
+        } else {
+            song.classList.remove('hl');
+        }
+    });
+
+    songs[nextIndex].play();
 });
 
 player.addEventListener('pause', () => {
-    currentlyPlaying = null;
+
 });
 
+btnMore.addEventListener('click', function () {
+    page++;
+    getSongs();
+});
 
 class Song {
     constructor(file_id, duration, singer, song, link) {
@@ -53,10 +65,7 @@ class Song {
     }
 
     prettyPrintTime(time) {
-        time = parseInt(time);
-        const mins = ~~(time / 60);
-        const secs = time % 60;
-        return `${mins}:${secs}`;
+        return (time - (time %= 60)) / 60 + (9 < time ? ':' : ':0') + time;
     }
 
     play() {
@@ -71,6 +80,8 @@ class Song {
                         player.load();
                         player.play();
 
+                        titlePlaying.innerHTML = `${this.song} - ${this.singer}`;
+                        document.title = `${this.song} ${this.singer}` + " - Poor Man's Music";
                         try {
                             albumArt(this.singer, this.song, 'large', function (err, artUrl) {
                                 artCover.classList.remove('hidden');
@@ -79,12 +90,9 @@ class Song {
                         } catch (ex) {
                             console.log("Error getting the Artwork");
                         }
-
-
                     }
                 });
         } catch (ex) {
-            isPlaying = "ERROR :" + ex.message;
             titlePlaying.innerHTML = "Something went wrong.."
         }
     }
@@ -101,14 +109,10 @@ function playSong(e) {
 
     const song = songs.filter(song => (song.file_id === song_id));
     currentlyPlaying = song[0];
-
     tableElement.classList.add('hl');
-
-    titlePlaying.innerHTML = `${song[0].song} - ${song[0].singer}`;
 
     song[0].play();
 }
-
 
 function displaySongsInList() {
     const html = songs.map(song => {
@@ -168,7 +172,3 @@ function getSongs(e) {
             }
         });
 }
-
-
-
-
