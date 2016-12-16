@@ -34,9 +34,14 @@ audio {
     width: 60%;
 }
 
-#coverWrapper {
-    position: fixed;
+#artCover {
+    position: absolute;
+    left: 0;
     bottom: 0;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
 }
 
 .hl {
