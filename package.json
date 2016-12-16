@@ -21,6 +21,7 @@
   "dependencies": {
     "album-art": "^1.0.2",
     "cheerio": "^0.22.0",
+    "electron-is-dev": "^0.1.2",
     "node-fetch": "^1.6.3",
     "remote": "^0.2.6"
   }
