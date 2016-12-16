@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Poor Man's Music</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/photon.min.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+<div class="window">
+
+    <!-- .toolbar-header sits at the top of your app -->
+    <header class="toolbar toolbar-header">
+        <h1 class="title">Poor Man's Music <span class="icon icon-note-beamed"></span></h1>
+    </header>
+    <!-- Your app's content goes inside .window-content -->
+    <div class="window-content">
+        <div class="pane-group">
+            <div class="pane pane-sm sidebar">
+                <nav class="nav-group">
+                    <ul class="list-group">
+                        <li class="list-group-header">
+                            <input id="searchInput" class="form-control" type="text" placeholder="Search">
+                            <br>
+                            <button id="btnMore" class="btn btn-default hidden">More songs</button>
+                        </li>
+                        <li class="list-group-header" id="coverWrapper">
+                            <img class="hidden" id="artCover">
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="pane">
+                <table class="table-striped">
+                    <thead>
+                    <tr>
+                        <th>Track</th>
+                        <th>Artist</th>
+                        <th>Duration</th>
+                    </tr>
+                    </thead>
+                    <tbody id="songsList">
+                    </tbody>
+                </table>
+                <div id="bottomPlayer">
+                    <div id="titlePlaying"></div>
+                    <audio id="player" controls="controls">
+                        <source id="mp3Source" type="audio/mp3"></source>
+                    </audio>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    // You can also require other files to run in this process
+    require('./renderer.js');
+</script>
+</html>

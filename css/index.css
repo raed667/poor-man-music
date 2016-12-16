@@ -1,0 +1,44 @@
+#btnMore {
+    margin-top: 5px;
+    float: right;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#titlePlaying {
+    font-weight: 900;
+    font-family: sans-serif;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+#bottomPlayer {
+    padding: 0px;
+    background-color: #ffffff;
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    bottom: 0;
+    margin: 0px 0px 0px auto;
+    display: block;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+audio {
+    background-color: #dcdfe1;
+}
+
+#player {
+    width: 60%;
+}
+
+#coverWrapper {
+    position: fixed;
+    bottom: 0;
+}
+
+.hl {
+    background-color: #1a82fb;
+}
