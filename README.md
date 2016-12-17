@@ -7,6 +7,7 @@ It works exactly like Spotify:
 * Search for a song, an album or an artist 
 * Select a song 
 * Play
+* Download it locally if you wish
 * ???
 * Don't pay a single dime
 
@@ -32,7 +33,7 @@ List of things that would be nice to have:
 - [ ] Better typehead style (CSS & JS)
 - [ ] Better `audio` player style (CSS)
 - [ ] Create user playlist (database)
-- [ ] Download MP3 files locally (fileSystem)
+- [x] Download MP3 files locally (fileSystem)
 - [ ] Serve local MP3 file if found (fileSystem)
 
 #### License
