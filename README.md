@@ -10,15 +10,20 @@ It works exactly like Spotify:
 * ???
 * Don't pay a single dime
 
-The application will try to fetch a cover art for every song you start to play.
-
-
-#### Screenshot
+## Screenshot
 
 ![Screenshot](https://github.com/RaedsLab/poor-man-music/blob/master/pmmScreenshot.png)
 
 
-#### Todo
+## How to use it?
+
+0. Make sure that you have Node installed
+1. Clone or download this repository
+2. Run `npm update` inside the directory to install the dependencies
+3. Run `npm start`
+
+
+## Todo
 
 List of things that would be nice to have:
 
