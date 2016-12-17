@@ -143,6 +143,7 @@ class Song {
 
 function playSong(e) {
 
+    // Temporary @todo : find a better way that works
     if (e.target.classList.contains('btnDownload')) {
         download(e);
         return;
@@ -255,7 +256,7 @@ function displayMatches() {
                 return `<li data-suggestion="${suggestion}" class="suggestionElement"><span class="name">${sugesstionText}</span></li>`;
             });
             suggestionsList.innerHTML = typeheadList.slice(0, 5).join('');
-            const suggestionsElements = Array.from(document.querySelectorAll('.suggestionElement'));
+            const suggestionsElements = document.querySelectorAll('.suggestionElement');
             suggestionsElements.forEach(element => {
                 element.addEventListener('click', e => {
                     searchInput.value = e.currentTarget.dataset.suggestion;

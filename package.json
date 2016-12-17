@@ -28,7 +28,6 @@
     "cheerio": "^0.22.0",
     "electron-is-dev": "^0.1.2",
     "node-fetch": "^1.6.3",
-    "request": "^2.79.0",
-    "user-home": "^2.0.0"
+    "request": "^2.79.0"
   }
 }
