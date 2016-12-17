@@ -8,9 +8,7 @@
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-
 <div class="window">
-
     <!-- .toolbar-header sits at the top of your app -->
     <header class="toolbar toolbar-header">
         <h1 class="title">Poor Man's Music <span class="icon icon-note-beamed"></span></h1>
@@ -28,6 +26,15 @@
                             <br>
                             <button id="btnMore" class="btn btn-default hidden">More songs</button>
                         </li>
+                        <li class="list-group-header">
+                            <div class="progress">
+                                <div class="progress-bar">
+                                    <div class="progress-shadow"></div>
+                                </div>
+                            </div>
+                            <span id="downloadMessage" class="nav-group-item">
+                            </span>
+                        </li>
                         <li>
                             <img class="hidden" id="artCover">
                         </li>
@@ -41,6 +48,7 @@
                         <th>Track</th>
                         <th>Artist</th>
                         <th>Duration</th>
+                        <th>Download</th>
                     </tr>
                     </thead>
                     <tbody id="songsList">

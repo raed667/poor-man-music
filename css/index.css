@@ -69,3 +69,40 @@ audio {
     justify-content: space-between;
     text-transform: capitalize;
 }
+
+/* PROGRESS */
+.progress {
+    background-color: #e5e9eb;
+    height: 0.25em;
+    position: relative;
+    width: 100%;
+    display: none;
+}
+
+.disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.progress-bar {
+    /*animation-name: width;*/
+    width: 0%;
+    background-image: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
+    background-size: 20em 0.25em;
+    height: 100%;
+    position: relative;
+}
+
+.progress-shadow {
+    background-image: linear-gradient(to bottom, #eaecee, transparent);
+    height: 4em;
+    position: absolute;
+    top: 100%;
+    transform: skew(45deg);
+    transform-origin: 0 0;
+    width: 100%;
+}
+
+#downloadMessage {
+    display: none;
+}
