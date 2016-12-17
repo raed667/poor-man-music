@@ -19,8 +19,6 @@ const downloadMessage = document.querySelector('#downloadMessage');
 
 const MUSIC_DIR = "Music";
 
-const suggestions = ["3 doors down", "kryptonite", "30 seconds to mars", "311", "amber", "the academy is...", "almost here", "adema", "giving in", "afi", "girl's not grey", "sing the sorrow", "alien ant farm", "smooth criminal", "alkaline trio", "radio", "maybe i'll catch fire", "from here to infirmary", "the all-american rejects", "my paper heart", "swing, swing", "the all-american rejcts", "amazing transparent man", "edit/undo", "anberlin", "the apex theory", "bullshed", "apossibly", "aphex twin", "cock/ver10", "drukqs", "armor for sleep", "dream to make believe", "as tall as lions", "at the drive-in", "one armed scissor", "relationship of command", "atreyu", "right side of the bed", "ben folds", "bitches ain't shit", "rockin' the suburbs", "ben kweller", "rockin' the suburbs", "wasted & ready", "sha sha", "benny benassi", "satisfaction (isak original mix)", "blink 182", "what's my age again?", "all the small things", "adam's song", "the party song", "anthem part two", "first date", "stay together for the kids", "family reunion", "enema of the state", "take off your pants and jacket", "blue meanies", "grandma shampoo", "box car racer", "i feel so", "brand new", "jude law and a semester abroad", "the quiet things that no one ever knows", "sic transit gloria... glory fades", "your favorite weapon", "deja entendu", "breaking pangaea", "colors on the inside", "bright eyes", "lover i don't have to love", "take it easy (love nothing)", "fevers and mirrors", "i'm wide awake, it's morning", "bush", "comedown", "glycerine", "machinehead", "swallowed", "the chemicals between us", "warm machine", "letting the cables sleep", "sixteen stone", "razorblade suitcase", "the science of things", "golden state", "the calling", "wherever you will go", "chevelle", "send the pain below", "closure", "the red", "wonder what's next", "cold", "no one", "end of the world", "gone away", "stupid girl", "collective soul", "cool hand luke", "the fires of life", "copeland", "beneath medicine tree", "counting crows", "crazy town", "butterfly", "revolving door", "creed", "higher", "with arms wide open", "human clay", "the crystal method", "(can't you) trip like i do feat. filter", "name of the game", "cursive", "art is hard", "the recluse", "daniel bedingfield", "gotta get thru this", "dashboard confessional", "screaming infidelities", "the places you have come to fear the most", "hands down", "so impossible", "vindicated", "the places you have come to fear the most", "so impossible ep", "a mark, a mission, a brand, a scar", "deathcab for cutie", "the new year", "the sound of settling", "transatlanticism", "deftones", "back to school (mini maggit)", "digital bath", "knife party", "white pony", "dillinger escape plan", "disturbed", "the early november", "emery", "fall out boy", "fenix tx", "finch", "finger eleven", "from first to last", "further seems forever", "glassjaw", "goldfinger", "good charlotte", "gorillaz", "clint eastwood", "green day", "hawthorne heights", "hellogoodbye", "hey mercedes", "hoobastank", "incubus", "jack’s mannequin", "jimmy eat world", "the juliana theory", "less than jake", "local h", "lucky boys confusion", "mae", "mars volta", "matchbook romance", "metric", "mewithoutyou", "ministry of sound", "trance nation deeper", "mxpx", "motion city soundtrack", "muse", "my chemical romance", "new found glory", "nofx", "offspring", "our lady peace", "somewhere out there", "innocent", "gravity", "paul oakenfold", "ready steady go", "zoo york", "bunkka", "pedro the lion", "foregone conclusions", "control", "achilles’ heel", "p.o.d.", "southtown", "alive", "youth of the nation", "boom", "the fundamental elements of southtown", "satellite", "postal service", "such great heights", "the district sleeps alone tonight", "we will become silhouettes", "give up", "powerman 5000", "when worlds collide", "puddle of mudd", "control", "blurry", "she hates me", "rammstein", "du hast", "saves the day", "at your funeral", "freakish", "stay what you are", "silverchair", "tomorrow", "ana's song (open fire)", "miss you love", "silverstein", "smashed into pieces", "giving up", "smile in your sleep", "my heroine", "when broken is easily fixed", "discovering the waterfront", "simple plan", "i’d do anything", "i’m just a kid", "perfect", "no pads, no helmets... just balls", "smashing pumpkins", "today", "disarm", "tonight, tonight", "zero", "bullet with butterfly wings", "1979", "siamese dream", "mellon collie and the infinite sadness", "snow patrol", "run", "chasing cars", "something corporate", "i woke up in a car", "if you c jordan", "hurricane", "leaving through the window", "staind", "mudshovel", "outside", "it’s been awhile", "the starting line", "the best of me", "up &amp; go", "say it like you mean it", "story of the year", "until the day i die", "page avenue", "straylight run", "existentialism on prom night", "sum 41", "fat lip", "in too deep", "sunny day real estate", "faces in disguise", "system of a down", "chop suey!", "toxicity", "aerials", "toxicity", "taking back sunday", "makedamnsure", "a decade under the influence", "cute without the ‘e’", "you’re so last summer", "tell all your friends", "third eye blind", "third eye blind", "thrice", "all that’s left", "the artist in the ambulance", "the artist in the ambulance", "thursday", "understanding in a car crash", "cross out the eyes", "paris in flames", "for the workforce, drowning", "signals over the air", "war all the time", "full collapse", "war all the time", "twothirtyeight", "modern day prayer", "underoath", "a boy brushed red living in black and white", "they’re only chasing safety", "the union underground", "turn me on “mr. deadman”", "south texas deathride", "killing the fly", "unwritten law", "seein’ red", "the used", "the taste of ink", "buried myself alive", "blue and yellow", "the used", "weezer", "hash pipe", "island in the sun", "the blue album", "the working title", "never forever", "yellowcard", "october nights", "ocean avenue", "ocean avenue"];
-
 const songs = [];
 let currentlyPlaying,
     tableElement,
@@ -243,26 +241,29 @@ function findMatches(wordToMatch, suggestions) {
 }
 
 function displayMatches() {
-    const matchArray = findMatches(this.value, suggestions);
-
-    const typeheadList = matchArray.map(suggestion => {
-        const regex = new RegExp(this.value, 'gi');
-        const sugesstionText = suggestion.replace(regex, `<span class="hl">${this.value}</span>`);
-        return `<li data-suggestion="${suggestion}" class="suggestionElement"><span class="name">${sugesstionText}</span></li>`;
-    });
-    suggestionsList.innerHTML = typeheadList.slice(0, 5).join('');
-
-    const suggestionsElements = Array.from(document.querySelectorAll('.suggestionElement'));
-    suggestionsElements.forEach(element => {
-        element.addEventListener('click', e => {
-            searchInput.value = e.currentTarget.dataset.suggestion;
-            suggestionsList.innerHTML = "";
-
-            getSongs({keyCode: 13});
+    if (this.value.length < 3) {
+        return;
+    }
+    fetch(`https://suggestqueries.google.com/complete/search?client=firefox&q=${this.value}`)
+        .then(blob => blob.json())
+        .then(response => {
+            const matchArray = findMatches(this.value, response[1]);
+            const typeheadList = matchArray.map(suggestion => {
+                const regex = new RegExp(this.value, 'gi');
+                const sugesstionText = suggestion.replace(regex, `<span class="hl">${this.value}</span>`);
+                return `<li data-suggestion="${suggestion}" class="suggestionElement"><span class="name">${sugesstionText}</span></li>`;
+            });
+            suggestionsList.innerHTML = typeheadList.slice(0, 5).join('');
+            const suggestionsElements = Array.from(document.querySelectorAll('.suggestionElement'));
+            suggestionsElements.forEach(element => {
+                element.addEventListener('click', e => {
+                    searchInput.value = e.currentTarget.dataset.suggestion;
+                    suggestionsList.innerHTML = "";
+                    getSongs({keyCode: 13});
+                });
+            });
         });
-    });
 }
-
 
 function download(e) {
     const file_id = e.currentTarget.dataset.file_id;
@@ -278,7 +279,6 @@ function download(e) {
     });
 }
 
-///////
 function downloadFile(file_url, targetPath) {
     // Save variable to know progress
     let received_bytes = 0;
