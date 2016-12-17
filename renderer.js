@@ -121,9 +121,16 @@ class Song {
                         titlePlaying.innerHTML = `${this.song} - ${this.singer}`;
                         document.title = `${this.song} ${this.singer}` + " - Poor Man's Music";
                         try {
+                            const singer = this.singer;
                             albumArt(this.singer, this.song, 'large', function (err, artUrl) {
+                                if (artUrl !== "") {
+                                    artCover.src = artUrl;
+                                } else {
+                                    albumArt(singer, null, 'large', function (err, artUrl) {
+                                        artCover.src = artUrl || 'img/no_album.jpg';
+                                    });
+                                }
                                 artCover.classList.remove('hidden');
-                                artCover.src = artUrl || 'img/no_album.jpg';
                             });
                         } catch (ex) {
                             console.log("Error getting the Artwork");
