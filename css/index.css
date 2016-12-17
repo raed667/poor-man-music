@@ -54,7 +54,6 @@ audio {
     margin: 0;
     padding: 0;
     position: relative;
-    /*perspective:20px;*/
 }
 
 .suggestions li {
@@ -85,8 +84,7 @@ audio {
 }
 
 .progress-bar {
-    /*animation-name: width;*/
-    width: 0%;
+    width: 0;
     background-image: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
     background-size: 20em 0.25em;
     height: 100%;

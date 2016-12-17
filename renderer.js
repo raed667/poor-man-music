@@ -3,7 +3,7 @@ const cheerio = require('cheerio');
 const albumArt = require('album-art');
 const request = require('request');
 const fs = require('fs');
-const userHome = require('user-home');
+const os = require('os');
 
 const searchInput = document.querySelector('#searchInput');
 const songsList = document.querySelector('#songsList');
@@ -92,7 +92,7 @@ class Song {
                 .then(blob => blob.json())
                 .then(response => {
                     if (response.success === true && response.residue_type === "tracks") {
-
+                        const userHome = os.homedir();
                         if (!fs.existsSync(`${userHome}/${MUSIC_DIR}`)) {
                             fs.mkdirSync(`${userHome}/${MUSIC_DIR}`);
                         }
@@ -147,6 +147,7 @@ function playSong(e) {
         download(e);
         return;
     }
+
     const song_id = e.target.parentNode.dataset.file_id;
     tableElement = e.target.parentNode;
 
@@ -266,7 +267,7 @@ function displayMatches() {
 }
 
 function download(e) {
-    const file_id = e.currentTarget.dataset.file_id;
+    const {file_id} = e.currentTarget.dataset;
     if (e.target.parentNode.classList.contains('disabled')) {
         return;
     }
