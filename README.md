@@ -24,6 +24,12 @@ It works exactly like Spotify:
 3. Run `npm start`
 
 
+### Is this magic ?
+
+No this is Electron, Node, Chromium, V8, and a [russian music server](http://pleer.net).
+
+
+
 ## Todo
 
 List of things that would be nice to have:
