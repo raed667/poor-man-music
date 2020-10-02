@@ -27,7 +27,7 @@
     "album-art": "^1.0.2",
     "cheerio": "^0.22.0",
     "electron-is-dev": "^0.1.2",
-    "node-fetch": "^1.6.3",
+    "node-fetch": "^2.6.1",
     "request": "^2.79.0"
   }
 }
