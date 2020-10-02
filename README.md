@@ -1,5 +1,7 @@
 # Poor Man's Music
 
+# Abandoned 
+
 Desktop music streaming application, built with [electron](http://electron.atom.io/).
 
 It works exactly like Spotify: 
